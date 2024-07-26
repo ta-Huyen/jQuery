@@ -1,0 +1,17 @@
+[
+    {
+        "id": 0,
+        "name":"Nguyen Van A",
+        "birthday":"2020-04-08",
+        "phone": "0912345678",
+        "hometown": "Ha Noi"
+    },
+
+    {
+        "id": 1,
+        "name":"Nguyen Van B",
+        "birthday":"2000-06-12",
+        "phone": "0916855678",
+        "hometown": "Hoi An"
+    }
+]

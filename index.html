@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Assigment</title>
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form action="#" id="formSubmission" method="post">
+        <h2>Student form</h2>
+        
+        <ul>
+            <li>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" required>
+                <small class="unvalid nodisplay" id="text-validationName">
+                    <p>Name value is not valid.</p>
+                </small>
+            </li>
+            <li>
+                <label for="birthday">Birthday</label>
+                <input type="date" name="birthday" id="birthday" required><br>
+                <small class="unvalid nodisplay" id="text-validationBirthday">
+                    <p>Birhday value is not valid.</p>
+                </small>
+            </li>
+            <li>
+                <label for="phone">Mobile phone</label>
+                <input type="text" name="phone" id="phone" required><br>
+                <small class="unvalid nodisplay" id="text-validationMobilePhone">
+                    <p>Mobile phone value is not valid.</p>
+                </small>
+            </li>
+            <li>
+                <label for="hometown">Hometown</label>
+                <input type="text" name="hometown" id="hometown" required><br>
+                <small class="unvalid nodisplay" id="text-validationHomeTown">
+                    <p>Hometown value is not valid.</p>
+                </small>
+            </li>
+            <li id="btn">
+                <button type="submit" id="savebtn">Save</button>
+                <button type="submit" id="resetbtn" onclick="resetData()">Reset</button>
+            </li>
+        </ul>
+    </form>
+   
+    
+    <div class="table-container">
+        <div class="button-container">
+            <button type="submit" class="deletebtn" onclick="deleteData()">Delete</button>
+            <button type="submit" class="editbtn" onclick="editData()">Edit</button>
+        </div>
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Birthday</th>
+                    <th>Mobile phone</th>
+                    <th>Hometown</th>
+                </tr>
+            </thead>
+            <tbody id="data-output"></tbody>
+        </table>
+    </div>
+  
+    <!--=============== MAIN JS ===============-->
+    <script src="./js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <!-- <script src="https://requirejs.org/docs/release/2.3.6/minified/require.js"></script> -->
+</body>
+</html>

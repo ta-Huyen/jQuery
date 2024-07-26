@@ -1,0 +1,121 @@
+1. Khác biệt giữa 3 hàm slice, subString, subStr trong String prototype:
+    + string.slice(start[,end]) : tách lấy một phần của xâu ký tự từ vị trí start đến trước vị trí end và trả về xâu tách được là một xâu mới
+      string.substr(start[,length]) : tách xâu ký tự từ ký tự ở vị trí chỉ định start và trả về xâu con có độ dài length
+      string.substring(start[,end]) : tách lấy một phần của xâu ký tự từ vị trí start đến trước vị trí end và trả về xâu tách được là một xâu mới
+    + Cả 3 hàm không làm thay đổi String ban đầu, thông số thứ 2 truyền vào là Optional, nếu không chỉ định thì sẽ mặc định đến điểm cuối của xâu ký tự ban đầu
+    + Nếu truyền thông số âm:
+      slice() : đếm từ ký tự bắt đầu từ phía cuối của xâu
+      vd. s = "abcd" - s.slice(-1) = "d"
+      substr() : đếm từ ký tự bắt đầu từ phía cuối của xâu giống slice()
+      substring() : chọn từ ký tự đầu tiên làm bắt đầu
+      vd. s="abcd" - s.substring(-1, 3) = "abc"
+    + Nếu thông số thứ 1 > thông số thứ 2:
+      slice() : không thực thi
+      substr() : chạy bình thường do thông số thứ 2 chỉ định độ dài, không phải vị trí
+      substring() : đảo ngược hai thông số và chạy bình thường
+      vd. s = "abcd" - s.substring(3, 1) = s.substring(1, 3) = "bc"
+    + Thông số thứ 2:
+      slice() : Optional, vị trí dừng
+      substr() : Optional, số lượng ký tự cần lấy ra
+      substring() : Optional, vị trí dừng
+
+2. Khai báo var a = "demo" khác gì với var a = new String("demo")? Cách nào được khuyến nghị sử dụng? Vì sao?
+Hãy sử dụng string thay cho new String(), hãy sử dụng number thay cho new Number(), ....
+
+Do object có rất nhiều các phương thức hỗ trợ mặc định (như constructor, ...) nên khi khởi tạo nó chiếm nhiều bộ nhớ hơn và làm chậm hiệu năng. Thêm vào đó, khi thực hiện so sánh tuyệt đối (absolute comparison) === thì kết quả sẽ không bao giờ là true vì 2 object có 2 phân vùng địa chỉ khác nhau. Mặt khác, JS engine sẽ tự động convert từ kiểu nguyên thủy sang kiểu object khi cần thiết mà không cần phải khai báo sẵn
+
+3.
+object.propertyName : propertyName phải là một thuộc tính được khai báo của object và tuân thủ theo nguyên tắc đặt tên (không bắt đầu bằng số, không có khoảng trống)
+object["propertyName"] : propertyName sẽ là một xâu đại diện cho thuộc tính, nó có thể là bất kỳ xâu nào, bao gồm ví dụ như '1foo', '!bar!' hoặc ' ' (khoảng trống). Cách gọi bằng [] sẽ đánh giá giá trị của xâu "propertyName" để xem như tham chiếu đến giá trị thuộc tính
+vd. const obj = {
+        name: "cooode",
+        age: 80,
+        language: "javascript",
+    }
+    obj["name"] ---> "cooode"
+    hoặc
+    const myKey = "language"
+    obj[myKey] ---> "javascript"
+  Nếu gọi obj.myKey, do myKey không tồn tại trong obj đã khai báo, câu lệnh này sẽ tạo thêm 1 thuộc tính mới cho obj là "myKey".
+  Khi gán obj.myKey = "java" -> obj sẽ có thuộc tính mới {myKey: "java"} và thuộc tính language sẽ không thay đổi.
+  Mặt khác, nếu gọi obj[myKey] = "java", câu lệnh này sẽ truy vẫn đến thuộc tính language và thay đổi nó {language: "java"} thay vì tạo thêm thuộc tính mới.
+
+4.
+Null : là một giá trị rỗng, được gán cho biến. Biến được gán null mang ý đó là một biến rỗng. Null là một object trong JavaScript
+       typeof (null) = object
+Undefined : nghĩa là "không định nghĩa", khi một biến được khai báo nhưng chưa được gán giá trị thì biến đó là undefined
+            typeof (undefined) = undefined
+
+5. Khi function hello() là một phần tử thuộc mảng a ở vị trí thứ 3. Muốn gọi nó ra chạy thì cú pháp như thế nào?
+  ----> a[3]()
+
+6.
+    Mảng là 1 kiểu dữ liệu thuộc kiểu tham chiếu (reference type) dùng để lưu trữ nhiều giá trị trong 1 biến duy nhất.
+    Mảng có thể chứa bất kỳ kiểu dữ liệu nào(bao gồm number, string và object). Mảng cho phép chứa một kiểu hoặc nhiều kiểu dữ liệu cùng lúc và sử dụng các chỉ mục được đánh số bắt đầu từ 0 để truy cập các phần tử cụ thể.
+
+7. Điểm khác biệt giữa cách truy cập của mảng và object? Làm thế nào để nhận biết một biến a nào đó là một mảng?
+    
+    Hàm Array.isArray(a) trả về true nếu a là một mảng, nếu không là false.
+
+8. Hoisting trong JS.
+
+
+9. Kết quả của các phép toán: 
+    +, 10 + 5 = 15
+    +, "10" + 5 = "105"
+    +, 10 + "5" = "105"
+    +, 10 + 20 + "5" = "305"
+    +, "10" + "5" = "105"
+    +, "10" + 20 + 5 = "10205"
+    +, 2**5 = 32
+    +, "10"/5 = 2
+    +, "10"/"5" = 2
+    +, "10"/"Abc" = NaN
+
+
+10. Các tham số đầu vào của một function: primitive, Object, Function
+
+
+11.
+    var person = {
+        firstName: "John",
+        lastName : "Doe",
+        id     : 5566,
+        fullName : function() {
+            return this.firstName + " " + this.lastName;
+        }
+    };
+    person.fullName;
+    person.fullName();
+
+-------> "John Doe"
+
+12.
+    Switch-case hoạt động bằng phép so sánh bằng nghiêm ngặt "==="
+
+13. Kết quả của các phép so sánh:
+    +, null == undefined          -> true
+    +, null == null               -> true
+    +, typeof null == "object"    -> true
+    +, typeof null == "null"      -> false
+    +, null == NaN                -> false
+    +, NaN == NaN                 -> false  
+    +, typeof 10/"Ahihi" == "NaN" -> false
+
+
+14.
+    String trong JS là bất biến bởi vì khi string 
+
+    vd. let str = "Hello World";
+        str.replace("Hello", "Bye");
+        console.log(str)
+      ----> "Hello World" - xâu ban đầu không đổi
+        let str1 = "Hello WORLD";
+        let str2 = str1.toLowerCase();
+        console.log(str1);
+        console.log(str2);
+      ----> Hello WORLD
+            hello world - xâu ban đầu không thay đổi mà sẽ tạo một xâu mới lưu ở biễn khác 
+
+15. Trong JS, khi có khối try mà không có catch có được không? 
+    Khối catch có thể rỗng nhưng vẫn cần có khối catch/finally.

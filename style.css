@@ -1,0 +1,125 @@
+body {
+    font: 1em sans-serif;
+    padding: auto;
+    text-align: center;
+}
+
+h2 {
+    color: black;
+}
+
+form{
+    display: inline-block;
+    margin: 2em;
+    /* Form outline */
+    padding-left: 5em;
+    padding-right: 5em;
+    border: 1px solid black;
+    border-radius: 3em;
+}
+
+form li + li {
+    margin-top: 1.5em;
+}
+  
+ul {
+    list-style: none;
+    padding: 1em;
+    margin: 0;
+}
+
+label {
+    display: inline-block;
+    min-width: 130px;
+    text-align: left;
+}
+
+input,
+textarea {
+    width: 300px;
+    box-sizing: border-box;
+    border: 1px solid #999;
+}
+
+input:focus,
+textarea:focus {
+  border-color: black;
+}
+
+.unvalid{
+    position: relative;
+    width: 100%;
+    display: block;
+}
+
+.unvalid p{
+    color: red;
+    text-align: right;
+    margin: 0;
+    top: -6px;
+}
+
+.nodisplay {
+    display:none;
+}
+
+ul, li.btn {
+    text-align: right;
+}
+
+button {
+    font: 1.05em sans-serif;
+    width: 90px;
+    margin-left: 10px;
+}
+
+.table-container .button-container {
+    margin: auto;
+    width: 70%;
+    padding-bottom: 1em;
+}
+
+.table-container .button-container button {
+    margin: 0 10px 0 0;
+}
+
+.table-container, .button-container.button {
+    margin: 0 10px 0 0;
+    text-align: left;
+}
+
+input[type="checkbox"] {
+    width: 1.15em;
+    height: 1.15em;
+}
+
+table {
+    margin: auto;
+    width: 70%;
+}
+
+table, th, td {
+    text-align: center;
+    border: 1px solid black;
+    border-collapse: collapse
+}
+
+thead th:nth-child(1) {
+    width: 7%;
+}
+  
+thead th:nth-child(2) {
+    width: 21%;
+}
+  
+thead th:nth-child(3) {
+    width: 18%;
+}
+  
+thead th:nth-child(4) {
+    width: 27%;
+}
+ 
+thead th:nth-child(5) {
+    width: 27%;
+}
