@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.getElementById("savebtn").addEventListener("click", (e)=>{
     e.preventDefault();
+    saveData();
 })
 
 function saveData() {
@@ -22,7 +23,17 @@ function saveData() {
         hometown = document.getElementById("hometown").value.trim();
 
     if (validationData()) {
-        addRowToTable(name, birthday, phone, hometown);
+        let checkboxes = document.querySelectorAll('.student-checkbox');
+        let checkedCheckboxes = Array.from(checkboxes).filter(cb => cb.checked);
+    
+        if (checkedCheckboxes.length == 0) {
+            addRowToTable(name, birthday, phone, hometown);
+        } else {
+            checkedCheckboxes[0].parentNode.parentNode.cells[1].innerHTML = name;
+            checkedCheckboxes[0].parentNode.parentNode.cells[2].innerHTML = birthday;
+            checkedCheckboxes[0].parentNode.parentNode.cells[3].innerHTML = phone;
+            checkedCheckboxes[0].parentNode.parentNode.cells[4].innerHTML = hometown;
+        }
         // writeJson(tableToJson);
         resetData();
     }
@@ -60,10 +71,6 @@ function editData() {
         document.getElementById("birthday").value = checkedCheckboxes[0].parentNode.parentNode.cells[2].innerHTML;
         document.getElementById("phone").value = checkedCheckboxes[0].parentNode.parentNode.cells[3].innerHTML;
         document.getElementById("hometown").value = checkedCheckboxes[0].parentNode.parentNode.cells[4].innerHTML;
-
-        document.getElementById("savebtn").addEventListener("click", (e)=>{
-            checkedCheckboxes[0].parentNode.parentNode.parentNode.removeChild(checkedCheckboxes[0].parentNode.parentNode);
-        })
     }     
 };
 
@@ -71,7 +78,7 @@ function addRowToTable(name, birthday, phone, hometown) {
     let out = "";
     out += `
             <tr>
-                <td><input type="checkbox" id = "cb" class="student-checkbox"/></td>
+                <td><input type="checkbox" id="cb" class="student-checkbox" onclick="enableBtn()"/></td>
                 <td>${name}</td>
                 <td>${birthday}</td>
                 <td>${phone}</td>
@@ -79,6 +86,19 @@ function addRowToTable(name, birthday, phone, hometown) {
             </tr>
         `;
     $('#data-table > tbody:last-child').append(out)
+}
+
+function enableBtn() {
+    let checkboxes = document.querySelectorAll('.student-checkbox');
+    let checkedCheckboxes = Array.from(checkboxes).filter(cb => cb.checked);
+    
+    if (checkedCheckboxes.length > 0) {
+        $('#deletebtn').removeAttr('disabled');
+        $('#editbtn').removeAttr('disabled');
+    } else {
+        $('#deletebtn').attr('disabled','disabled');
+        $('#editbtn').attr('disabled','disabled');
+    }
 }
 
 function validationData() {
