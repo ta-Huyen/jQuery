@@ -42,7 +42,7 @@
                 </small>
             </li>
             <li id="btn">
-                <button type="submit" id="savebtn" onclick="saveData()">Save</button>
+                <button type="submit" id="savebtn">Save</button>
                 <button type="submit" id="resetbtn" onclick="resetData()">Reset</button>
             </li>
         </ul>
@@ -51,8 +51,8 @@
     
     <div class="table-container">
         <div class="button-container">
-            <button type="submit" id="deletebtn" onclick="deleteData()">Delete</button>
-            <button type="submit" id="editbtn" onclick="editData()">Edit</button>
+            <button type="submit" id="deletebtn" onclick="deleteData()" disabled>Delete</button>
+            <button type="submit" id="editbtn" onclick="editData()" disabled>Edit</button>
         </div>
         <table id="data-table">
             <thead>
